@@ -4,5 +4,5 @@
 @tailwind utilities;
 
 @plugin "daisyui" {
-    themes: autumn --default;
+    themes: corporate --default;
 }

@@ -47,8 +47,8 @@ function StylePicker() {
                             className={`btn h-16 
                             ${
                                 activePreset === preset
-                                    ? "btn-primary"
-                                    : "btn-base-100"
+                                    ? "btn-soft btn-secondary btn-active"
+                                    : "btn-soft"
                             }
                         `}
                         >
@@ -69,8 +69,8 @@ function StylePicker() {
                             className={`btn h-14 
                             ${
                                 alignment === align
-                                    ? "btn-primary"
-                                    : "btn-base-100"
+                                    ? "btn-soft btn-secondary btn-active"
+                                    : "btn-soft"
                             }
                         `}
                         >
