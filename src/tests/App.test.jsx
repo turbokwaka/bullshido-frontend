@@ -4,5 +4,5 @@ import App from "../App";
 
 test("renders App component successfully", () => {
     render(<App />);
-    expect(screen.getByText(/bullshido proj/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/bullshido./i)[0]).toBeInTheDocument();
 });

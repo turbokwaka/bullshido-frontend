@@ -3,12 +3,6 @@
 @import "tailwindcss";
 @tailwind utilities;
 
-@theme {
-    --color-fuckinBlack: #03060c;
-    --font-sans: "Montserrat", sans-serif;
-}
-@layer base {
-    body {
-        @apply bg-fuckinBlack;
-    }
+@plugin "daisyui" {
+    themes: autumn --default;
 }
