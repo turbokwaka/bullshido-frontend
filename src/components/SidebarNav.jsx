@@ -10,7 +10,7 @@ function SidebarNav() {
             <li className="mt-4"></li>
 
             <li>
-                <a className="menu-active">
+                <a className="menu-focus">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"

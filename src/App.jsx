@@ -35,9 +35,16 @@ function App() {
                     </div>
                 </div>
 
-                <div className="grid w-full max-w-7xl grid-cols-1 gap-8 lg:grid-cols-2 lg:py-8">
-                    <CreatorForm />
-                    <VideoPreview />
+                <div className="w-full max-w-7xl lg:py-8 flex-grow">
+                    <h1 className="text-3xl font-bold mb-6">Create video</h1>
+                    <div className="divider"></div>
+
+                    <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-3">
+                        <div className="lg:col-span-2">
+                            <CreatorForm />
+                        </div>
+                        <VideoPreview />
+                    </div>
                 </div>
 
                 <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
@@ -96,7 +103,6 @@ function App() {
             </div>
 
             <div className="drawer-side">
-                {}
                 <label
                     htmlFor="my-drawer-2"
                     aria-label="close sidebar"

@@ -2,25 +2,15 @@ import React, { useState } from "react";
 
 function StylePicker() {
     const [activePreset, setActivePreset] = useState("Outline");
-
     const [alignment, setAlignment] = useState("Bottom");
 
     const presets = [
-        "Basic",
-        "Revid",
-        "Hormoz",
-        "Ali",
-        "Wrap 1",
-        "Wrap 2",
-        "Faceless",
-        "Elegant",
-        "Difference",
-        "Opacity",
-        "Playful",
-        "Bold Punch",
-        "Movie",
-        "Outline",
-        "Cove",
+        { name: "1", imageUrl: "/images/presets/1.png" },
+        { name: "2", imageUrl: "/images/presets/2.png" },
+        { name: "3", imageUrl: "/images/presets/3.png" },
+        { name: "4", imageUrl: "/images/presets/4.png" },
+        { name: "5", imageUrl: "/images/presets/5.png" },
+        { name: "6", imageUrl: "/images/presets/6.png" },
     ];
 
     const alignments = ["Top", "Middle", "Bottom"];
@@ -34,52 +24,47 @@ function StylePicker() {
     };
 
     return (
-        <fieldset className="fieldset">
-            <legend className="fieldset-legend">
-                3. Choose subtitles style
-            </legend>
-            <div className="card w-full max-w-lg bg-base-100">
-                <div className="grid grid-cols-3 gap-2">
-                    {presets.map((preset) => (
-                        <button
-                            key={preset}
-                            onClick={() => handlePresetClick(preset)}
-                            className={`btn h-16 
-                            ${
-                                activePreset === preset
-                                    ? "btn-soft btn-secondary btn-active"
-                                    : "btn-soft"
-                            }
-                        `}
-                        >
-                            {preset} {}
-                        </button>
-                    ))}
-                </div>
-
-                <label className="label mt-6">
-                    <span className="label-text">Alignment</span>
-                </label>
-
-                <div className="grid grid-cols-3 gap-2">
-                    {alignments.map((align) => (
-                        <button
-                            key={align}
-                            onClick={() => handleAlignClick(align)}
-                            className={`btn h-14 
-                            ${
-                                alignment === align
-                                    ? "btn-soft btn-secondary btn-active"
-                                    : "btn-soft"
-                            }
-                        `}
-                        >
-                            {align}
-                        </button>
-                    ))}
-                </div>
+        <>
+            <div className="grid grid-cols-3 gap-2">
+                {presets.map((preset) => (
+                    <button
+                        key={preset.name}
+                        onClick={() => handlePresetClick(preset.name)}
+                        className={`btn h-16 
+                        ${
+                            activePreset === preset.name
+                                ? "btn btn-active"
+                                : "btn"
+                        }
+                    `}
+                    >
+                        <img
+                            src={preset.imageUrl}
+                            alt={preset.name}
+                            className="h-20 w-20 object-contain p-1"
+                        />
+                    </button>
+                ))}
             </div>
-        </fieldset>
+
+            <label className="label mt-6">
+                <span className="label-text">Alignment</span>
+            </label>
+
+            <div className="grid grid-cols-3 gap-2">
+                {alignments.map((align) => (
+                    <button
+                        key={align}
+                        onClick={() => handleAlignClick(align)}
+                        className={`btn h-14 
+                        ${alignment === align ? "btn btn-active" : "btn"}
+                    `}
+                    >
+                        {align}
+                    </button>
+                ))}
+            </div>
+        </>
     );
 }
 
