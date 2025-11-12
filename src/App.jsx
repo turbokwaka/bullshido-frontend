@@ -1,7 +1,6 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 import SidebarNav from "./components/SidebarNav.jsx";
-import CreatorForm from "./components/CreatorForm.jsx";
-import VideoPreview from "./components/VideoPreview.jsx";
 
 function App() {
     return (
@@ -9,6 +8,7 @@ function App() {
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
             <div className="drawer-content flex flex-col items-center p-4">
+                {}
                 <div className="navbar w-full lg:hidden">
                     <div className="flex-none">
                         <label
@@ -35,16 +35,10 @@ function App() {
                     </div>
                 </div>
 
+                {}
                 <div className="w-full max-w-7xl lg:py-8 flex-grow">
-                    <h1 className="text-3xl font-bold mb-6">Create video</h1>
-                    <div className="divider"></div>
-
-                    <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-3">
-                        <div className="lg:col-span-2">
-                            <CreatorForm />
-                        </div>
-                        <VideoPreview />
-                    </div>
+                    {}
+                    <Outlet />
                 </div>
 
                 <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">

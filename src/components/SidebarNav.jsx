@@ -1,16 +1,22 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function SidebarNav() {
     return (
         <ul className="menu min-h-full w-80 bg-base-200 p-4 text-base-content">
             <li>
-                <a className="text-2xl font-bold">bullshido.</a>
+                <NavLink to="/" className="text-2xl font-bold">
+                    bullshido.
+                </NavLink>
             </li>
 
             <li className="mt-4"></li>
 
             <li>
-                <a className="menu-focus">
+                <NavLink
+                    to="/app/create"
+                    className={({ isActive }) => (isActive ? "menu-focus" : "")}
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
@@ -26,10 +32,13 @@ function SidebarNav() {
                         />
                     </svg>
                     Create video
-                </a>
+                </NavLink>
             </li>
             <li>
-                <a>
+                <NavLink
+                    to="/app/gallery"
+                    className={({ isActive }) => (isActive ? "menu-focus" : "")}
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
@@ -45,10 +54,13 @@ function SidebarNav() {
                         />
                     </svg>
                     Gallery
-                </a>
+                </NavLink>
             </li>
             <li>
-                <a>
+                <NavLink
+                    to="/app/settings"
+                    className={({ isActive }) => (isActive ? "menu-focus" : "")}
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
@@ -69,8 +81,8 @@ function SidebarNav() {
                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                         />
                     </svg>
-                    Options
-                </a>
+                    Settings
+                </NavLink>
             </li>
         </ul>
     );
