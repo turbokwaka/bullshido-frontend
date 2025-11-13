@@ -3,35 +3,62 @@ import { Link } from "react-router-dom";
 
 function LandingPage() {
     return (
-        <div className="flex flex-col min-h-screen">
-            <div className="navbar bg-base-200">
+        <div className="flex flex-col min-h-screen dot">
+            <div className="navbar">
                 <div className="flex-1">
-                    <a className="btn btn-ghost text-2xl font-bold">
+                    <Link to="/" className="btn btn-ghost text-2xl font-bold">
                         bullshido.
-                    </a>
+                    </Link>
                 </div>
             </div>
 
-            <div className="hero bg-base-200 flex-grow">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <img
-                        src="https://pngimg.com/uploads/cat/cat_PNG50488.png"
-                        className="max-w-sm"
-                        alt="A cat"
-                    />
-                    <div>
-                        <h1 className="text-6xl font-bold">
-                            Shitload the whole tiktok!
+            <div className="hero flex-grow-max">
+                <div className="hero-content flex-col lg:flex-row-reverse w-full max-w-none">
+                    <div className="hidden lg:block pl-30">
+                        <div className="hover-3d">
+                            <figure className="rounded-[3rem] shadow-xl">
+                                <img
+                                    className="max-w-md"
+                                    src="/images/video-preview.png"
+                                    alt="3D card"
+                                />
+                            </figure>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div className="">
+                        <h1 className="text-7xl font-bold">
+                            Smarter, faster, easier.
                         </h1>
-                        <p className="text-3xl py-6">
-                            Stop editing, start shitloading.
+                        <h1 className="text-7xl">AI video creation.</h1>
+                        <p className="text-3xl font-light text-base-content/70 py-12">
+                            bullshido is the AI plugin you will love!
+                            <br />
+                            It provides useful tools to turn simple text into
+                            viral videos faster.
                         </p>
-                        <Link
-                            to="/app/create"
-                            className="btn btn-wide btn-primary"
-                        >
-                            Get Started
-                        </Link>
+
+                        <div className="flex flex-col lg:flex-row gap-4 w-full lg:w-auto">
+                            <Link
+                                to="/app/gallery"
+                                className="btn w-full btn-lg lg:btn-wide"
+                            >
+                                See examples
+                            </Link>
+                            <Link
+                                to="/app/create"
+                                className="btn w-full btn-lg lg:btn-wide btn-neutral"
+                            >
+                                Get Started
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
