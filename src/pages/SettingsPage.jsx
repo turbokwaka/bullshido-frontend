@@ -1,6 +1,53 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+const MOCK_CORRECT_PASSWORD = "password123";
+
+const checkCurrentPasswordMock = (password) => {
+    return password === MOCK_CORRECT_PASSWORD;
+};
 
 function SettingsPage() {
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const [newUsername, setNewUsername] = useState("");
+
+    const [isPasswordChangeDisabled, setIsPasswordChangeDisabled] =
+        useState(true);
+
+    const currentPasswordRef = useRef(null);
+
+    useEffect(() => {
+        const isCurrentPasswordCorrect =
+            checkCurrentPasswordMock(currentPassword);
+        const isNewPasswordNotEmpty = newPassword.length > 0;
+        const doNewPasswordsMatch = newPassword === confirmPassword;
+
+        if (
+            isCurrentPasswordCorrect &&
+            isNewPasswordNotEmpty &&
+            doNewPasswordsMatch
+        ) {
+            setIsPasswordChangeDisabled(false);
+        } else {
+            setIsPasswordChangeDisabled(true);
+        }
+    }, [currentPassword, newPassword, confirmPassword]);
+
+    const handleCurrentPasswordBlur = () => {
+        if (!currentPasswordRef.current) return;
+
+        if (currentPassword.length === 0) {
+            currentPasswordRef.current.setCustomValidity("");
+        } else if (checkCurrentPasswordMock(currentPassword)) {
+            currentPasswordRef.current.setCustomValidity("");
+        } else {
+            currentPasswordRef.current.setCustomValidity(
+                "Поточний пароль введено неправильно.",
+            );
+        }
+    };
+
     return (
         <div className="">
             <h1 className="text-3xl font-bold mb-6">Settings</h1>
@@ -57,6 +104,10 @@ function SettingsPage() {
                                         placeholder="Enter new username"
                                         className="input input-bordered w-full"
                                         defaultValue="artem_dev"
+                                        value={newUsername}
+                                        onChange={(e) =>
+                                            setNewUsername(e.target.value)
+                                        }
                                     />
                                 </div>
                                 <div className="form-control w-full">
@@ -93,9 +144,19 @@ function SettingsPage() {
                                     </label>
                                     <input
                                         type="password"
-                                        placeholder="idk your password"
-                                        className="input w-full"
+                                        placeholder="password123"
+                                        ref={currentPasswordRef}
+                                        className="input input-bordered w-full validator"
+                                        required
+                                        value={currentPassword}
+                                        onChange={(e) =>
+                                            setCurrentPassword(e.target.value)
+                                        }
+                                        onBlur={handleCurrentPasswordBlur}
                                     />
+                                    <p className="validator-hint hidden text-error text-sm mt-1">
+                                        Поточний пароль введено неправильно.
+                                    </p>
                                 </div>
                                 <div className="form-control w-full">
                                     <label className="label">
@@ -105,9 +166,27 @@ function SettingsPage() {
                                     </label>
                                     <input
                                         type="password"
-                                        placeholder="Enter new password"
-                                        className="input w-full"
+                                        className="input validator w-full"
+                                        required
+                                        placeholder="New password"
+                                        minLength="8"
+                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                        title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                                        value={newPassword}
+                                        onChange={(e) =>
+                                            setNewPassword(e.target.value)
+                                        }
                                     />
+                                    <p className="validator-hint hidden">
+                                        Must be more than 8 characters,
+                                        including
+                                        <br />
+                                        At least one number
+                                        <br />
+                                        At least one lowercase letter
+                                        <br />
+                                        At least one uppercase letter
+                                    </p>
                                 </div>
                                 <div className="form-control w-full">
                                     <label className="label">
@@ -117,11 +196,32 @@ function SettingsPage() {
                                     </label>
                                     <input
                                         type="password"
-                                        placeholder="Confirm new password"
-                                        className="input w-full"
+                                        className="input validator w-full"
+                                        required
+                                        placeholder="New password"
+                                        minLength="8"
+                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                        title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+                                        value={confirmPassword}
+                                        onChange={(e) =>
+                                            setConfirmPassword(e.target.value)
+                                        }
                                     />
+                                    <p className="validator-hint hidden">
+                                        Must be more than 8 characters,
+                                        including
+                                        <br />
+                                        At least one number
+                                        <br />
+                                        At least one lowercase letter
+                                        <br />
+                                        At least one uppercase letter
+                                    </p>
                                 </div>
-                                <button className="btn btn-disabled">
+                                <button
+                                    className="btn"
+                                    disabled={isPasswordChangeDisabled}
+                                >
                                     Change password
                                 </button>
                             </div>
